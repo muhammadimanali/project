@@ -1,17 +1,14 @@
 let searchBtn = document.getElementById("search-btn");
-let linkInp = document.getElementById("link-inp");
-let customName = document.getElementById("name-inp");
+let inp = document.getElementById("inp");
 
 searchBtn.addEventListener("click", () => {
-    let linkUrl = linkInp.value;
-    let nameUrl = customName.value;
-    let corsProxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    let finalURL = `http://ulvis.net/api.php?url=${linkUrl}&custom=${nameUrl}`;
+    let input = inp.value;
+    let finalURL = `https://api.alquran.cloud/v1/surah/${input}`;
     console.log(finalURL)
-    fetch(corsProxyUrl + finalURL)
-        .then((response) => response.text())
+    fetch(finalURL)
+        .then((response) => response.json())
         .then((data) => {
-            console.log(data)
+            console.log(data.ayahs[0])
     //         // console.log(data[0].capital[0])
     //         // console.log(data[0].flags.svg)
     //         // console.log(data[0].name.common)
@@ -45,12 +42,12 @@ searchBtn.addEventListener("click", () => {
     //         //     </div>
                 
     //         //     `
-    //     }).catch(()=>{
-    //         if(linkInp == 0){
-    //             result.innerHTML=`<h3>The input field cannot be empty</h3>`
-    //         }
-    //         else{
-    //             result.innerHTML=`<h3>Please enter a valid country name</h3>`
-    //         }
-    //     })
+        }).catch(()=>{
+            if(inp == 0){
+                result.innerHTML=`<h3>The input field cannot be empty</h3>`
+            }
+            else{
+                result.innerHTML=`<h3>Please enter a valid country name</h3>`
+            }
+        })
 })
