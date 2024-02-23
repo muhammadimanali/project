@@ -3,7 +3,7 @@ let inp = document.getElementById("inp");
 
 searchBtn.addEventListener("click", () => {
     let input = inp.value;
-    let finalURL = `https://api.alquran.cloud/v1/surah/${input}`;
+    let finalURL = ``;
     console.log(finalURL)
     fetch(finalURL)
         .then((response) => response.json())
